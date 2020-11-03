@@ -1,4 +1,6 @@
-package javaImplementations;import java.util.Arrays;
+package javaImplementations;
+
+import java.util.Arrays;
 
 public class HeapSort {
 
@@ -14,9 +16,9 @@ public class HeapSort {
         System.out.println(Arrays.toString(arr) + "\n");
 
         System.out.println("converting array to a Max-Heap...");
+        convertToAMaxHeap(arr);
         printCurrentState(arr);
 
-        convertToAMaxHeap(arr);
 
         System.out.println("done converting array to a Max-Heap");
         printCurrentState(arr);
@@ -40,26 +42,26 @@ public class HeapSort {
     }
 
     private static void convertToAMaxHeap(int[] arr) {
-        for (int i = arr.length - 1; i >= 0; i--) {
-            bubbleDown(arr, i, arr.length);
+        for (int nodeIndex = arr.length - 1; nodeIndex >= 0; nodeIndex--) {
+            bubbleDown(arr, nodeIndex, arr.length);
         }
     }
 
-    private static void bubbleDown(int[] arr, int root, int n) {
-        int greatest = root;
+    private static void bubbleDown(int[] arr, int rootIndex, int heapSize) {
+        int greatestNodeIndex = rootIndex;
 
-        if (hasLeft(root, n)) {
-            if (arr[greatest] < arr[getLeft(root)])
-                greatest = getLeft(root);
-            if (hasRight(root, n) && (arr[greatest] < arr[getRight(root)]))
-                greatest = getRight(root);
+        if (hasLeft(rootIndex, heapSize)) {
+            if (arr[rootIndex] < arr[getLeft(rootIndex)])
+                greatestNodeIndex = getLeft(rootIndex);
+            if (hasRight(rootIndex, heapSize) && (arr[greatestNodeIndex] < arr[getRight(rootIndex)]))
+                greatestNodeIndex = getRight(rootIndex);
         }
 
-        if (greatest != root) {
-            System.out.printf("bubbling down %d", arr[root]);
+        if (arr[greatestNodeIndex] > arr[rootIndex]) {
+            System.out.printf("bubbling down %d", arr[rootIndex]);
             System.out.println();
-            swap(arr, greatest, root);
-            bubbleDown(arr, greatest, n);
+            swap(arr, greatestNodeIndex, rootIndex);
+            bubbleDown(arr, greatestNodeIndex, heapSize);
         }
     }
 
