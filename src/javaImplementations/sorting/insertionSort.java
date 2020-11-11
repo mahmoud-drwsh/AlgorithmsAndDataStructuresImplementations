@@ -19,6 +19,7 @@ public class insertionSort {
         System.out.println(Arrays.toString(arr));
     }
 
+    // a demonstration of an exceptional level of...
     static void insertionSort(int[] arr) {
         for (int n = arr.length, i = 0, j = i + 1, value = arr[j]; i < n - 1; arr[j] = value, ++i, j = i + 1, value = j < n ? arr[j] : 0)
             while (j > 0 && value < arr[j - 1]) arr[j] = arr[--j];
