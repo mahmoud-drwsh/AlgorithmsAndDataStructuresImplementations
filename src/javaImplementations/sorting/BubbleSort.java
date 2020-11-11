@@ -1,4 +1,4 @@
-package javaImplementations;import java.util.Arrays;
+package javaImplementations.sorting;import java.util.Arrays;
 
 public class BubbleSort {
     public static void main(String[] args) {

@@ -1,9 +1,7 @@
-package javaImplementations;
+package javaImplementations.sorting;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class RadixSort {
     public static void main(String[] args) {

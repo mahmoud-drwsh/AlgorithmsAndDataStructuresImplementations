@@ -1,9 +1,9 @@
-package javaImplementations;
+package javaImplementations.sorting;
 
 import java.util.ArrayDeque;
 
 public class TreeSort {
-    static class Node {
+    public static class Node {
         int data;
         Node right;
         Node left;
@@ -13,7 +13,7 @@ public class TreeSort {
         }
     }
 
-    static Node treeSort(int[] arr) {
+    public static Node treeSort(int[] arr) {
         Node rootNode = null;
 
         for (int j = 0, arrLength = arr.length; j < arrLength; j++) {
@@ -46,14 +46,14 @@ public class TreeSort {
         }
     }
 
-    static void treeToQueueInOrder(Node rootNode, ArrayDeque<Integer> integers) {
+    public static void treeToQueueInOrder(Node rootNode, ArrayDeque<Integer> integers) {
         if (rootNode == null) return;
         treeToQueueInOrder(rootNode.left, integers);
         integers.offer(rootNode.data);
         treeToQueueInOrder(rootNode.right, integers);
     }
 
-    static void treeToQueueInOrderReversed(Node rootNode, ArrayDeque<Integer> integers) {
+    public static void treeToQueueInOrderReversed(Node rootNode, ArrayDeque<Integer> integers) {
         if (rootNode == null) return;
         treeToQueueInOrderReversed(rootNode.right, integers);
         integers.offer(rootNode.data);

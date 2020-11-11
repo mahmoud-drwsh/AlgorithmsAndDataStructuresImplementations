@@ -3,17 +3,18 @@ package kotlinImplementations
 import kotlin.random.Random
 
 class TreeSort<T : Comparable<T>> {
-    private data class node<T : Comparable<T>>(
+    private data class Node<T : Comparable<T>>(
         var t: T,
-        var right: node<T>? = null,
-        var left: node<T>? = null,
+        var right: Node<T>? = null,
+        var left: Node<T>? = null,
     )
 
-    private var root: node<T>? = null
+    private var root: Node<T>? = null
 
     fun sort(list: List<T>) {
+        var node: Node<T>
         for (t in list) {
-            val node = node(t)
+            node = Node(t)
             if (root == null) {
                 root = node
             } else {
@@ -22,18 +23,18 @@ class TreeSort<T : Comparable<T>> {
         }
     }
 
-    private fun node<T>.insert(node: node<T>) {
-        if (node.t <= t) {
+    private fun Node<T>.insert(Node: Node<T>) {
+        if (Node.t <= t) {
             if (left == null) {
-                left = node
+                left = Node
             } else {
-                left?.insert(node)
+                left?.insert(Node)
             }
         } else {
             if (right == null) {
-                right = node
+                right = Node
             } else {
-                right?.insert(node)
+                right?.insert(Node)
             }
         }
     }
@@ -48,7 +49,7 @@ class TreeSort<T : Comparable<T>> {
         return arrayDeque
     }
 
-    private fun getQueue(root: node<T>?, arrayDeque: ArrayDeque<T>) {
+    private fun getQueue(root: Node<T>?, arrayDeque: ArrayDeque<T>) {
         root?.run {
             getQueue(left, arrayDeque)
             arrayDeque.add(t)
@@ -56,7 +57,7 @@ class TreeSort<T : Comparable<T>> {
         }
     }
 
-    private fun getQueueReversed(root: node<T>?, arrayDeque: ArrayDeque<T>) {
+    private fun getQueueReversed(root: Node<T>?, arrayDeque: ArrayDeque<T>) {
         root?.run {
             getQueueReversed(right, arrayDeque)
             arrayDeque.add(t)
@@ -70,5 +71,5 @@ fun main() {
 
     treeSort.sort(Array(Random.nextInt(10, 20)) { Random.nextInt(50) }.toMutableList())
 
-    println(treeSort.getQueueReversed())
+    println(treeSort.getQueue())
 }
